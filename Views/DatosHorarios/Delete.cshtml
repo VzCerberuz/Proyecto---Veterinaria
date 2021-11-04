@@ -1,0 +1,55 @@
+﻿@model Proyecto_Veterinaria.Models.DatosHorarios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Quieres eliminar esta tabla?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoHorario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoHorario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadHoras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadHoras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoNormal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoNormal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoExtra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoExtra)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

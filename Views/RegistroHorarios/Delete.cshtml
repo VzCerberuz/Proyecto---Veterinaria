@@ -1,0 +1,56 @@
+﻿@model Proyecto_Veterinaria.Models.RegistroHorarios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Quieres elminar esta tabla?</h3>
+<div>
+    <h4>Registro de Horarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioDefi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioDefi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorasExtras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasExtras)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Elminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

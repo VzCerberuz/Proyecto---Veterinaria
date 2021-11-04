@@ -1,0 +1,50 @@
+﻿@model Proyecto_Veterinaria.Models.RegistroHorarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Registro de Horarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioDefi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioDefi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorasExtras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasExtras)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

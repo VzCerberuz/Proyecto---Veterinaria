@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Proyecto_Veterinaria.Models.DatosHorarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Datos de Horarios</h2>
+
+<p>
+    @Html.ActionLink("Nueva Tabla", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoHorario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadHoras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostoNormal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostoExtra)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoHorario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadHoras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostoNormal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostoExtra)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
