@@ -20,9 +20,12 @@ namespace Proyecto_Veterinaria.Models
         [Display(Name = "Documento del Empleado")]
         public int Documento { get; set; }
 
+        [Required(ErrorMessage = "{0} es requerido")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
+                ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de Nacimiento")]
-
-        public DateTime Fecha { get; set; }
+        public System.DateTime Fecha { get; set; }
 
         [Display(Name = "Correo Electronico")]
         public string Correo { get; set; }

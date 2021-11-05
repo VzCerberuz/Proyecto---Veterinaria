@@ -20,6 +20,10 @@ namespace Proyecto_Veterinaria.Models
         [Display(Name = "Horario Definido")]
         public string HorarioDefi { get; set; }
 
+        [Required(ErrorMessage = "{0} es requerido")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
+                ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha")]
         public DateTime Fecha2 { get; set; }
 

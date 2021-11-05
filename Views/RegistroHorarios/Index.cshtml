@@ -35,7 +35,8 @@
             @Html.DisplayFor(modelItem => item.HorarioDefi)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Fecha2)
+            @*Html.DisplayFor(modelItem => item.Fecha2)*@
+            @item.Fecha2.ToString("dd-MM-yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HorasExtras)
