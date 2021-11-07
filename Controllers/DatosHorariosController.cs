@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +17,8 @@ namespace Proyecto_Veterinaria.Controllers
         // GET: DatosHorarios
         public ActionResult Index()
         {
-            return View(db.Horarios.ToList());
+            var horarios = db.Horarios.Include(d => d.tblEmpleados);
+            return View(horarios.ToList());
         }
 
         // GET: DatosHorarios/Details/5
@@ -27,7 +28,7 @@ namespace Proyecto_Veterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DatosHorarios datosHorarios = db.Horarios.Find(id);
+            DatosHorarios datosHorarios = db.Horarios.Where(e => e.Id == id).Include(d => d.tblEmpleados).FirstOrDefault();
             if (datosHorarios == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,15 @@ namespace Proyecto_Veterinaria.Controllers
         // GET: DatosHorarios/Create
         public ActionResult Create()
         {
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre");
+
+            var turnos = new List<SelectListItem> {
+                new SelectListItem { Value = "Matutino", Text = "Matutino" },
+                new SelectListItem { Value = "Vespertino", Text = "Vespertino" },
+                new SelectListItem { Value = "Nocturno", Text = "Nocturno" },
+            };
+
+            ViewBag.tiposHorarios = new SelectList(turnos, "Value", "Text");
             return View();
         }
 
@@ -55,6 +65,7 @@ namespace Proyecto_Veterinaria.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", datosHorarios.tblEmpleadosId);
             return View(datosHorarios);
         }
 
@@ -70,6 +81,16 @@ namespace Proyecto_Veterinaria.Controllers
             {
                 return HttpNotFound();
             }
+
+            var turnos = new List<SelectListItem> {
+                new SelectListItem { Value = "Matutino", Text = "Matutino" },
+                new SelectListItem { Value = "Vespertino", Text = "Vespertino" },
+                new SelectListItem { Value = "Nocturno", Text = "Nocturno" },
+            };
+
+            ViewBag.tiposHorarios = new SelectList(turnos, "Value", "Text");
+
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", datosHorarios.tblEmpleadosId);
             return View(datosHorarios);
         }
 
@@ -86,6 +107,7 @@ namespace Proyecto_Veterinaria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", datosHorarios.tblEmpleadosId);
             return View(datosHorarios);
         }
 

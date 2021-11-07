@@ -28,6 +28,6 @@ namespace Proyecto_Veterinaria.Models
         [Display(Name = "Costo Hora Extra")]
         public double CostoExtra { get; set; }
 
-        public Empleados Empleado { get; set; }
+        public Empleados tblEmpleados { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model Proyecto_Veterinaria.Models.SalarioEmpleado
+@{
+    ViewBag.Title = "Salario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Salario</h2>
+
+<h4>Empleado: @Model.Nombre</h4>
+<h4>Horas normales: @Model.Horas</h4>
+<h4>Horas normales: @Model.HorasExtra</h4>
+<h4>Salario: @Model.Salario.ToString("C2")</h4>
+
+
+

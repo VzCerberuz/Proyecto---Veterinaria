@@ -26,10 +26,10 @@ namespace Proyecto_Veterinaria.Models
         [Display(Name = "Fecha")]
         public DateTime Fecha2 { get; set; }
 
-        [Display(Name = "Horas Extras Trabajadas")]
-        public int HorasExtras { get; set; }
+        [Display(Name = "Horas")]
+        public int Horas { get; set; }
 
-        public Empleados Empleado { get; set; }
-        public DatosHorarios Horario { get; set; }
+        public Empleados tblEmpleados { get; set; }
+        public DatosHorarios tblDatosHorarios { get; set; }
     }
 }

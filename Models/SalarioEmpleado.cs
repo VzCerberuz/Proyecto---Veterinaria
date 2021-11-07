@@ -10,7 +10,8 @@ namespace Proyecto_Veterinaria.Models
         public int IdEmpleado { get; set; }
         public int IdHorario { get; set; }
         public string Nombre { get; set; }
-        public string Horario { get; set; }
+        public Double Horas { get; set; }
+        public Double HorasExtra { get; set; }
         public decimal Salario { get; set; }
     }
 }

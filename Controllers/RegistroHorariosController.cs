@@ -17,7 +17,8 @@ namespace Proyecto_Veterinaria.Controllers
         // GET: RegistroHorarios
         public ActionResult Index()
         {
-            return View(db.Registro.ToList());
+            var registro = db.Registro.Include(r => r.tblDatosHorarios).Include(r => r.tblEmpleados);
+            return View(registro.ToList());
         }
 
         // GET: RegistroHorarios/Details/5
@@ -27,7 +28,7 @@ namespace Proyecto_Veterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RegistroHorarios registroHorarios = db.Registro.Find(id);
+            RegistroHorarios registroHorarios = db.Registro.Where(r=>r.Id == id).Include(r=> r.tblEmpleados).Include(r=>r.tblDatosHorarios).FirstOrDefault();
             if (registroHorarios == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,8 @@ namespace Proyecto_Veterinaria.Controllers
         // GET: RegistroHorarios/Create
         public ActionResult Create()
         {
+            ViewBag.tblDatosHorariosId = new SelectList(db.Horarios, "Id", "TipoHorario");
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace Proyecto_Veterinaria.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
+        public ActionResult Create([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,Horas")] RegistroHorarios registroHorarios)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace Proyecto_Veterinaria.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.tblDatosHorariosId = new SelectList(db.Horarios, "Id", "TipoHorario", registroHorarios.tblDatosHorariosId);
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", registroHorarios.tblEmpleadosId);
             return View(registroHorarios);
         }
 
@@ -70,6 +75,8 @@ namespace Proyecto_Veterinaria.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.tblDatosHorariosId = new SelectList(db.Horarios, "Id", "TipoHorario", registroHorarios.tblDatosHorariosId);
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", registroHorarios.tblEmpleadosId);
             return View(registroHorarios);
         }
 
@@ -78,7 +85,7 @@ namespace Proyecto_Veterinaria.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
+        public ActionResult Edit([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,Horas")] RegistroHorarios registroHorarios)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace Proyecto_Veterinaria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.tblDatosHorariosId = new SelectList(db.Horarios, "Id", "TipoHorario", registroHorarios.tblDatosHorariosId);
+            ViewBag.tblEmpleadosId = new SelectList(db.Empleados, "Id", "Nombre", registroHorarios.tblEmpleadosId);
             return View(registroHorarios);
         }
 
@@ -113,6 +122,30 @@ namespace Proyecto_Veterinaria.Controllers
             db.Registro.Remove(registroHorarios);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Salario(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var registroHorario = db.Registro.Where(e=>e.Id == id).Include(e=>e.tblDatosHorarios).Include(e=>e.tblEmpleados).FirstOrDefault();
+            SalarioEmpleado salarioEmpleadito = new SalarioEmpleado();
+            salarioEmpleadito.Nombre = registroHorario.tblEmpleados.Nombre;
+            salarioEmpleadito.Horas = registroHorario.tblDatosHorarios.CantidadHoras;
+
+            double horasTrabajas = registroHorario.tblDatosHorarios.CantidadHoras - registroHorario.Horas;
+            double horasNormales = registroHorario.tblDatosHorarios.CantidadHoras - horasTrabajas;
+            double horasExtra = (horasTrabajas < 0) ? horasTrabajas * -1 : 0;
+            decimal Salario = (decimal)((horasNormales * registroHorario.tblDatosHorarios.CostoNormal) + (horasExtra * registroHorario.tblDatosHorarios.CostoExtra));
+
+            salarioEmpleadito.Horas = horasNormales;
+            salarioEmpleadito.HorasExtra = horasExtra;
+            salarioEmpleadito.Salario = Salario;
+
+            return View(salarioEmpleadito);
         }
 
         protected override void Dispose(bool disposing)

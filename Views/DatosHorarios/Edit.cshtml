@@ -18,9 +18,9 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tblEmpleadosId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tblEmpleadosId, "tblEmpleadosId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tblEmpleadosId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("tblEmpleadosId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tblEmpleadosId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TipoHorario, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TipoHorario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("TipoHorario", (SelectList)ViewBag.tiposHorarios, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TipoHorario, "", new { @class = "text-danger" })
             </div>
         </div>

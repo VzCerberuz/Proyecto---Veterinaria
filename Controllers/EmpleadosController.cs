@@ -118,18 +118,7 @@ namespace Proyecto_Veterinaria.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Salario (int? id)
-        {
-            if(id == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            var empleado = db.Empleados.Find(id);
-            SalarioEmpleado salarioEmpleadito = new SalarioEmpleado();
-
-            return View();
-        }
+       
 
         protected override void Dispose(bool disposing)
         {
