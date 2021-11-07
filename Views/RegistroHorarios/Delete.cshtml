@@ -2,29 +2,30 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Eliminar</h2>
+<h2>Delete</h2>
 
-<h3>¿Quieres elminar esta tabla?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Registro de Horarios</h4>
+    <h4>RegistroHorarios</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre2)
+            @Html.DisplayNameFor(model => model.tblEmpleadosId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre2)
+            @Html.DisplayFor(model => model.tblEmpleadosId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HorarioDefi)
+            @Html.DisplayNameFor(model => model.tblDatosHorariosId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HorarioDefi)
+            @Html.DisplayFor(model => model.tblDatosHorariosId)
         </dd>
 
         <dt>
@@ -49,8 +50,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Elminar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

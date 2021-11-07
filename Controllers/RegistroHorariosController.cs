@@ -46,7 +46,7 @@ namespace Proyecto_Veterinaria.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre2,HorarioDefi,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
+        public ActionResult Create([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Proyecto_Veterinaria.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre2,HorarioDefi,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
+        public ActionResult Edit([Bind(Include = "Id,tblEmpleadosId,tblDatosHorariosId,Fecha2,HorasExtras")] RegistroHorarios registroHorarios)
         {
             if (ModelState.IsValid)
             {

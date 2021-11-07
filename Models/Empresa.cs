@@ -7,12 +7,6 @@ using System.Data.Entity;
 
 namespace Proyecto_Veterinaria.Models
 {
-
-    public class Empresas
-    {
-        public int Id { get; set; }
-    }
-
     public class EmpresaDBContext : DbContext
     {
         public DbSet<DatosHorarios> Horarios { get; set; }

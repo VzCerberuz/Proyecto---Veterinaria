@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Proyecto_Veterinaria.Models;
+using Proyecto_Veterinaria.ViewModels;
 
 namespace Proyecto_Veterinaria.Controllers
 {
@@ -17,7 +18,9 @@ namespace Proyecto_Veterinaria.Controllers
         // GET: Empleados
         public ActionResult Index()
         {
-            return View(db.Empleados.ToList());
+            VmEmpleado empleadito = new VmEmpleado();
+            empleadito.listaEmpleados = db.Empleados.ToList();
+            return View(empleadito);
         }
 
         // GET: Empleados/Details/5
@@ -115,6 +118,19 @@ namespace Proyecto_Veterinaria.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Salario (int? id)
+        {
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var empleado = db.Empleados.Find(id);
+            SalarioEmpleado salarioEmpleadito = new SalarioEmpleado();
+
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,5 +139,6 @@ namespace Proyecto_Veterinaria.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

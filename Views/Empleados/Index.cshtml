@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Proyecto_Veterinaria.Models.Empleados>
+﻿@model Proyecto_Veterinaria.ViewModels.VmEmpleado
 
 @{
     ViewBag.Title = "Index";
@@ -12,24 +12,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Documento)
+            Documento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha)
+            Fecha
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Correo)
+            Correo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Area)
+            Area
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.listaEmpleados) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)

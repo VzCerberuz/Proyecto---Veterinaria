@@ -14,6 +14,8 @@ namespace Proyecto_Veterinaria.Models
     {
         public int Id { get; set; }
 
+        public int? tblEmpleadosId  { get; set; }
+
         [Display(Name = "Tipo de Horario")]
         public string TipoHorario { get; set; }
 
@@ -25,5 +27,7 @@ namespace Proyecto_Veterinaria.Models
 
         [Display(Name = "Costo Hora Extra")]
         public double CostoExtra { get; set; }
+
+        public Empleados Empleado { get; set; }
     }
 }

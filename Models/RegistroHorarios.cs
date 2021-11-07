@@ -14,11 +14,10 @@ namespace Proyecto_Veterinaria.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Nombre del Empleado")]
-        public string Nombre2 { get; set; }
+        public int? tblEmpleadosId { get; set; }
 
-        [Display(Name = "Horario Definido")]
-        public string HorarioDefi { get; set; }
+        public int? tblDatosHorariosId { get; set; }
+      
 
         [Required(ErrorMessage = "{0} es requerido")]
         [DataType(DataType.Date)]
@@ -29,5 +28,8 @@ namespace Proyecto_Veterinaria.Models
 
         [Display(Name = "Horas Extras Trabajadas")]
         public int HorasExtras { get; set; }
+
+        public Empleados Empleado { get; set; }
+        public DatosHorarios Horario { get; set; }
     }
 }
