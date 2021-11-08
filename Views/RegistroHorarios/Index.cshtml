@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Proyecto_Veterinaria.Models.RegistroHorarios>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Registro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="color:white; text-align:center">Tabla de registro</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" style="color:white;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.tblDatosHorarios.TipoHorario)
@@ -18,7 +18,7 @@
         <th>
             @Html.DisplayNameFor(model => model.tblEmpleados.Nombre)
         </th>
-        <th>
+        <th >
             @Html.DisplayNameFor(model => model.Fecha2)
         </th>
         <th>
@@ -28,7 +28,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr style="color:white;">
         <td>
             @Html.DisplayFor(modelItem => item.tblDatosHorarios.TipoHorario)
         </td>

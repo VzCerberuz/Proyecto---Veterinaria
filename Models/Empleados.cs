@@ -14,9 +14,11 @@ namespace Proyecto_Veterinaria.Models
     {
         public int Id { get; set; }
 
+        
         [Display(Name = "Nombre Empleado")]
         public string Nombre { get; set; }
 
+        [Required(ErrorMessage = "Ingrese el Documento del empleado")]
         [Display(Name = "Documento del Empleado")]
         public int Documento { get; set; }
 
@@ -27,6 +29,7 @@ namespace Proyecto_Veterinaria.Models
         [Display(Name = "Fecha de Nacimiento")]
         public System.DateTime Fecha { get; set; }
 
+        
         [Display(Name = "Correo Electronico")]
         public string Correo { get; set; }
 
